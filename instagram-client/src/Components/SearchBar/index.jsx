@@ -57,11 +57,18 @@ const SearchBar = ({ users }) => {
     }
   }
 
+  const [followStatus, setFollowStatus] = useState({});
+
   const handleFollowData = async () => {
     try {
+
       console.log(data);
       const response = await axios.post("http://localhost:8000/api/followUsers", data);
       console.log(response.data)
+      
+      const newFollowStatus = { ...followStatus };
+      newFollowStatus[data.followed_id] = response.data['message'] === 'Unfollowed.' ? 'Follow' : 'Unfollow';
+      setFollowStatus(newFollowStatus); 
     } catch(e) {
       console.log(e);
     }
@@ -80,7 +87,9 @@ const SearchBar = ({ users }) => {
                     {user.name}
                   </div>
 
-                  <button className="follow-btn pointer" onClick={() => handleFollow(user.id)}>Follow</button>
+                  <button className="follow-btn pointer" onClick={() => handleFollow(user.id)}>
+                    {followStatus[user.id] || 'Follow'}
+                  </button>
                 </div>
               </li>
             ))}
