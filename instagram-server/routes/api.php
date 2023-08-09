@@ -6,10 +6,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
-//Route::group(["middleware"=>"auth:api"],function(){
-    
+Route::group(["middleware"=>"auth:api"],function(){
+    //$user = Auth::user();
 
-    Route::post('register',[AuthController::class,'register']);
-    Route::post('login',[AuthController::class,'login']);
-    Route::post('getUsers',[AuthController::class,'getUsers']);
-//});
+    Route::post('getUsers',[UserController::class,'getUsers']);
+});
+
+Route::get("unauthorized", [AuthController::class, "unauthorized"])->name("unauthorized");
+Route::post('register',[AuthController::class,'register']);
+Route::post('login',[AuthController::class,'login']);

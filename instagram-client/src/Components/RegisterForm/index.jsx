@@ -24,7 +24,7 @@ const RegisterForm = ({setUser}) =>{
       localStorage.setItem('name', response.data.name)
       localStorage.setItem('token', response.data.token)
       setData({name:'', username: '', email: '', password: ''})
-      navigate("/Feeds");
+      navigate("/");
     }catch(e){
       console.log(e)
     }
