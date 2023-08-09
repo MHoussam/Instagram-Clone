@@ -37,7 +37,29 @@ const SearchBar = ({ users }) => {
     };
   }, []);
 
+  const handleFollow = (user_id)=>{
+    try{
+      const newData = {
+        follower_id: localStorage.getItem('id'),
+        followed_id: user_id
+      };
   
+      setData(newData);
+      handleFollowData();
+    }catch(e){
+      console.log(e)
+    }
+  }
+
+  const handleFollowData = async () => {
+    try {
+      console.log(data);
+      const response = await axios.post("http://localhost:8000/api/followUsers", data);
+      console.log(response.data)
+    } catch(e) {
+      console.log(e);
+    }
+  }
 
   return (
     <div className='search flex center'>
