@@ -10,6 +10,7 @@ Route::group(["middleware"=>"auth:api"],function(){
     //$user = Auth::user();
 
     Route::post('getUsers',[UserController::class,'getUsers']);
+    Route::post('followUsers',[UserController::class,'followUsers']);
 });
 
 Route::get("unauthorized", [AuthController::class, "unauthorized"])->name("unauthorized");

@@ -6,8 +6,9 @@ const SearchBar = ({ users }) => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [showList, setShowList] = useState(false);
   const [data, setData] = useState({
-    follower_id: '',
-    followed_id: ''
+    following_id: '',
+    followed_id: '', 
+    token: ''
   })  
 
   const handleSearch = (query) => {
@@ -40,8 +41,9 @@ const SearchBar = ({ users }) => {
   const handleFollow = (user_id)=>{
     try{
       const newData = {
-        follower_id: localStorage.getItem('id'),
-        followed_id: user_id
+        following_id: localStorage.getItem('id'),
+        followed_id: user_id,
+        token: localStorage.getItem('token')
       };
   
       setData(newData);
