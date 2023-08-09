@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SearchBar from "../../Components/SearchBar";
+import Logout from "../../Components/Logout";
 
 const Feeds = () => {
   const [users, setUsers] = useState([]);
@@ -32,8 +33,9 @@ const Feeds = () => {
   const [filteredUsers, setFilteredUsers] = useState([]);
 
   return (
-    <div>
+    <div className="flex">
       <SearchBar users={users} />
+      <Logout />
     </div>
   );
 };
