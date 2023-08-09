@@ -31,6 +31,10 @@ const SearchBar = ({ users }) => {
     setShowList(newQuery !== "");
   };
 
+  const handleInputClick = () => {
+    setShowList(true);
+  };
+
   React.useEffect(() => {
     document.addEventListener('click', handleClickOutside);
     return () => {
@@ -38,7 +42,7 @@ const SearchBar = ({ users }) => {
     };
   }, []);
 
-  const handleFollow = (user_id)=>{
+  const handleFollow = async (user_id)=>{
     try{
       const newData = {
         following_id: localStorage.getItem('id'),
@@ -46,7 +50,7 @@ const SearchBar = ({ users }) => {
         token: localStorage.getItem('token')
       };
   
-      setData(newData);
+      await setData(newData);
       handleFollowData();
     }catch(e){
       console.log(e)
@@ -66,7 +70,7 @@ const SearchBar = ({ users }) => {
   return (
     <div className='search flex center'>
       <div className="search-bar flex column center">
-        <input type="text" placeholder="Search users" className='search-bar-input' value={query} onChange={handleInputChange} />
+        <input type="text" placeholder="Search users" className='search-bar-input' value={query} onChange={handleInputChange} onClick={handleInputClick}/>
         {showList && (
           <ul className='search-list flex column'>
             {filteredUsers.map((user) => (
