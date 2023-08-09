@@ -1,0 +1,20 @@
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.pointer {
+    cursor: pointer;
+}

@@ -1,10 +1,10 @@
 import React from 'react';
-import axios from 'axios';
+import RegisterForm from "../../Components/RegisterForm";
 
 const Register = () => {
   return (
     <div>
-        <Register user={user} />
+        <RegisterForm />
     </div>
   )
 }

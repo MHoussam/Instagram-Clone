@@ -1,10 +1,12 @@
 import React from 'react';
-import axios from 'axios';
+import LoginForm from "../../Components/LoginForm";
 
 const Login = () => {
+    //const [user, setUser] = useState([]);
+
   return (
     <div>
-        <LoginForm user={user} />
+        <LoginForm />
     </div>
   )
 }
