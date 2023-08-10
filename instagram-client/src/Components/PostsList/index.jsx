@@ -22,11 +22,6 @@ const PostsList = () => {
     }
   };
 
-//   const fetchFollowingPosts = async () => {
-//       const userPosts = await fetchPosts();
-//       return userPosts;
-//   };
-
     const handleLike = async (id) => {
         try {
         const data = {
