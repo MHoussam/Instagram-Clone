@@ -88,17 +88,23 @@ class UserController extends Controller
         ->where('liked_user_id', $request->user_id)
         ->first();
 
-        if($liked == null) {
+        //$numberLikes = Like::whereIn('post_id', $request->post_id)->get();
+
+        if ($liked == null) {
             $likes = new Like;
             $likes->post_id = $request->post_id;
             $likes->liked_user_id = $request->user_id;
             $likes->save();
-            
-            return response()->json($likes);
+    
+            $numberLikes = Like::where('post_id', $request->post_id)->count();
+    
+            return response()->json(['Message' => 'Liked.', 'Likes' => $numberLikes]);
         } else {
             $liked->delete();
-
-            return response()->json(['message' => 'Unliked.']);
+    
+            $numberLikes = Like::where('post_id', $request->post_id)->count();
+    
+            return response()->json(['Message' => 'Unliked.', 'Likes' => $numberLikes]);
         }
     }
 }

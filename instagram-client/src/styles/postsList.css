@@ -15,8 +15,8 @@
 }
 
 .postCards {
-    row-gap: 15px;
-    height: 80vh;
+    row-gap: 25px;
+    height: 90vh;
     overflow: scroll;
 }
 

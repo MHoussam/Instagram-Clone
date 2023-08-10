@@ -47,12 +47,10 @@ const PostsList = () => {
 
   return (
     <div>
-      <h1>Posts from Users You're Following</h1>
       <div className='postCards flex column'>
         {posts.map((post) => (
             <div key={post.id}>
             <div className="card pointer"
-                // onClick={() => handleNavigate(contact.id)}
             >
                 <div className="name bold flex center">
                     {post.user_name}
@@ -61,8 +59,8 @@ const PostsList = () => {
                 <div className="container flex center">
                     {post.caption}
                 </div>
-                <div className="like flex center pointer">
-                    <button className="like-btn" onClick={() => handleLike(post.id)}>
+                <div className="like flex center">
+                    <button className="like-btn pointer" onClick={() => handleLike(post.id)}>
                         Like
                     </button>
                 </div>
