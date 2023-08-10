@@ -22,10 +22,24 @@ const PostsList = () => {
     }
   };
 
-  const fetchFollowingPosts = async () => {
-      const userPosts = await fetchPosts();
-      return userPosts;
-  };
+//   const fetchFollowingPosts = async () => {
+//       const userPosts = await fetchPosts();
+//       return userPosts;
+//   };
+
+    const handleLike = async (postId) => {
+        try {
+        const data = {
+            user_id: localStorage.getItem('id'),
+            post_id: postId,
+            token: localStorage.getItem('token')
+        };
+        const response = await axios.post('http://localhost:8000/api/likePost', data);
+        console.log('Liked: ', response.data);
+        } catch (error) {
+        console.log(error);
+        }
+    };
 
   useEffect(() => {
     fetchPosts();
@@ -48,7 +62,7 @@ const PostsList = () => {
                     {post.caption}
                 </div>
                 <div className="like flex center pointer">
-                    <button className="like-btn">
+                    <button className="like-btn" onClick={() => handleLike(post.id)}>
                         Like
                     </button>
                 </div>
