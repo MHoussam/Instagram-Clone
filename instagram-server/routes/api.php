@@ -14,6 +14,7 @@ Route::group(["middleware"=>"auth:api"],function(){
     Route::post('post',[UserController::class,'post']);
     Route::post('getPosts',[UserController::class,'getPosts']);
     Route::get('/images/{filename}', [UserController::class, 'getPics']);
+    Route::post('likePost',[UserController::class,'likePost']);
     
 });
 

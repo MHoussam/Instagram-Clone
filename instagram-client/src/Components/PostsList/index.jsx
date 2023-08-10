@@ -27,11 +27,11 @@ const PostsList = () => {
 //       return userPosts;
 //   };
 
-    const handleLike = async (postId) => {
+    const handleLike = async (id) => {
         try {
         const data = {
             user_id: localStorage.getItem('id'),
-            post_id: postId,
+            post_id: id,
             token: localStorage.getItem('token')
         };
         const response = await axios.post('http://localhost:8000/api/likePost', data);

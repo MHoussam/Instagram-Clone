@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Following;
 use App\Models\Post;
-//use App\Http\Controllers\DB;
+use App\Models\Like;
 use Illuminate\Support\Facades\DB;
 
 
@@ -80,5 +80,25 @@ class UserController extends Controller
     function getPics ($filename) {
         $path = public_path('images/' . $filename);
         return response()->file($path);
+    }
+
+    public function likePost(Request $request) {
+
+        $liked = Like::where('post_id', $request->post_id)
+        ->where('liked_user_id', $request->user_id)
+        ->first();
+
+        if($liked == null) {
+            $likes = new Like;
+            $likes->post_id = $request->post_id;
+            $likes->liked_user_id = $request->user_id;
+            $likes->save();
+            
+            return response()->json($likes);
+        } else {
+            $liked->delete();
+
+            return response()->json(['message' => 'Unliked.']);
+        }
     }
 }
