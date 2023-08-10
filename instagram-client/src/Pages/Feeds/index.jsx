@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SearchBar from "../../Components/SearchBar";
+import Post from "../../Components/Post";
 import Logout from "../../Components/Logout";
 
 const Feeds = () => {
@@ -35,6 +36,7 @@ const Feeds = () => {
   return (
     <div className="flex">
       <SearchBar users={users} />
+      <Post />
       <Logout />
     </div>
   );
