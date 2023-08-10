@@ -36,8 +36,16 @@ const PostsList = () => {
         };
         const response = await axios.post('http://localhost:8000/api/likePost', data);
         console.log('Liked: ', response.data);
+        const updatedPosts = posts.map((post) => {
+            if (post.id === id) {
+              return { ...post, Likes: response.data.Likes };
+            }
+            return post;
+          });
+          setPosts(updatedPosts);
+          fetchPosts();
         } catch (error) {
-        console.log(error);
+          console.log(error);
         }
     };
 
@@ -50,7 +58,7 @@ const PostsList = () => {
       <div className='postCards flex column'>
         {posts.map((post) => (
             <div key={post.id}>
-            <div className="card pointer"
+            <div className="card"
             >
                 <div className="name bold flex center">
                     {post.user_name}
@@ -58,6 +66,9 @@ const PostsList = () => {
                 <img src={`http://localhost:8000/${post.photo}`}  alt="Avatar" className="card-pic" />
                 <div className="container flex center">
                     {post.caption}
+                </div>
+                <div className="nbLikes">
+                    {post.likesNb} Likes
                 </div>
                 <div className="like flex center">
                     <button className="like-btn pointer" onClick={() => handleLike(post.id)}>

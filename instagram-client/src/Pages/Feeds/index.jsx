@@ -4,6 +4,7 @@ import SearchBar from "../../Components/SearchBar";
 import Post from "../../Components/Post";
 import Logout from "../../Components/Logout";
 import PostsList from "../../Components/PostsList";
+import "../../styles/feeds.css";
 
 const Feeds = () => {
   const [users, setUsers] = useState([]);
@@ -30,16 +31,22 @@ const Feeds = () => {
   }
 
   return (
-    <div className="flex column">
       <div className="flex">
-      <SearchBar users={users} />
-      <Post />
-      <Logout />
+        <div className="post">
+          <Post />
+        </div>
+        <div className="postsList">
+          <PostsList />
+        </div>
+        <div className="flex column">
+          <div className="logout">
+            <Logout />
+          </div>
+          <div className="searchBar">
+            <SearchBar users={users} />
+          </div>
       </div>
-      <div>
-      <PostsList />
       </div>
-    </div>
   );
 };
 

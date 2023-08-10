@@ -8,14 +8,15 @@ use App\Models\Following;
 use App\Models\Post;
 use App\Models\Like;
 use Illuminate\Support\Facades\DB;
-
-
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function getUsers() {
-        $users = User::all();
+        $authenticatedUserId = Auth::user()->id;
 
+        $users = User::where('id', '!=', $authenticatedUserId)
+        ->get();
         return response()->json($users);
     }
 
@@ -55,12 +56,13 @@ class UserController extends Controller
         $posts->user_id = $request->user_id;
         $posts->caption = $request->caption;
         $posts->uploaded_at = now();
+        $posts->likesNb = 0;
         $posts->save();
     
         return json_encode($posts);
     }
 
-    function getPosts(Request $request) {
+    public function getPosts(Request $request) {
 
         $follows = DB::table('followings')
             ->where('following_user_id', '=', $request->following_id)
@@ -68,14 +70,16 @@ class UserController extends Controller
             ->get()
             ->pluck('followed_user_id')
             ->toArray();
-
-            $posts = Post::whereIn('user_id', $follows)
+    
+        $posts = Post::whereIn('user_id', $follows)
             ->join('users', 'posts.user_id', '=', 'users.id')
             ->select('posts.*', 'users.name as user_name')
+            ->orderBy('uploaded_at', 'desc')
             ->get();
-        
-        return json_encode($posts);
+    
+        return response()->json($posts);
     }
+    
 
     function getPics ($filename) {
         $path = public_path('images/' . $filename);
@@ -96,11 +100,15 @@ class UserController extends Controller
             $likes->liked_user_id = $request->user_id;
             $likes->save();
     
+            Post::where('id', $request->post_id)->increment('likesNb');
+
             $numberLikes = Like::where('post_id', $request->post_id)->count();
     
             return response()->json(['Message' => 'Liked.', 'Likes' => $numberLikes]);
         } else {
             $liked->delete();
+
+            Post::where('id', $request->post_id)->decrement('likesNb');
     
             $numberLikes = Like::where('post_id', $request->post_id)->count();
     
