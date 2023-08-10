@@ -87,7 +87,7 @@ const SearchBar = ({ users }) => {
                     {user.name}
                   </div>
 
-                  <button className="follow-btn pointer" onClick={() => handleFollow(user.id)}>
+                  <button className="follow-btn pointer" key={user.id} onClick={() => handleFollow(user.id)}>
                     {followStatus[user.id] || 'Follow'}
                   </button>
                 </div>

@@ -3,6 +3,7 @@ import axios from "axios";
 import SearchBar from "../../Components/SearchBar";
 import Post from "../../Components/Post";
 import Logout from "../../Components/Logout";
+import PostsList from "../../Components/PostsList";
 
 const Feeds = () => {
   const [users, setUsers] = useState([]);
@@ -13,16 +14,13 @@ const Feeds = () => {
 
   const getUsers = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.post(
-        "http://localhost:8000/api/getUsers",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      );
+      
+      const data = {
+        token: localStorage.getItem('token')
+      };
+
+      console.log(data.token)
+      const response = await axios.post("http://localhost:8000/api/getUsers", data);
 
       setUsers(response.data);
       console.log('Users:', response.data);
@@ -30,14 +28,17 @@ const Feeds = () => {
       console.log(e);
     }
   }
-  
-  // const [filteredUsers, setFilteredUsers] = useState([]);
 
   return (
-    <div className="flex">
+    <div className="flex column">
+      <div className="flex">
       <SearchBar users={users} />
       <Post />
       <Logout />
+      </div>
+      <div>
+      <PostsList />
+      </div>
     </div>
   );
 };

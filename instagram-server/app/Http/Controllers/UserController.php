@@ -60,13 +60,17 @@ class UserController extends Controller
         return json_encode($posts);
     }
 
-    function getFollowing(Request $request) {
+    function getPosts(Request $request) {
 
         $follows = DB::table('followings')
-        ->where('following_user_id', '=', $request->following_id)
-        ->select('followed_user_id')
-        ->get();
+            ->where('following_user_id', '=', $request->following_id)
+            ->select('followed_user_id')
+            ->get()
+            ->pluck('followed_user_id')
+            ->toArray();
+
+        $posts = Post::whereIn('user_id', $follows)->get();
         
-        return json_encode($follows);
+        return json_encode($posts);
     }
 }
