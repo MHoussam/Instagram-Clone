@@ -1,0 +1,25 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 20%;
+    border-radius: 10px;
+}
+
+.container {
+    padding: 2% 0 4% 0;
+}
+
+.card-pic {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.postCards {
+    row-gap: 15px;
+    height: 80vh;
+    overflow: scroll;
+}
+
+.bold {
+    font-weight: bold;
+}

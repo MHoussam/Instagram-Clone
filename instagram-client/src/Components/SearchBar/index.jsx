@@ -74,6 +74,12 @@ const SearchBar = ({ users }) => {
     }
   }
 
+  useEffect(() => {
+    if (data.followed_id) {
+      handleFollowData();
+    }
+  }, [data]);
+
   return (
     <div className='search flex center'>
       <div className="search-bar flex column center">

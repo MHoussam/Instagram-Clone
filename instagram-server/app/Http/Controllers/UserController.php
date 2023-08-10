@@ -69,8 +69,16 @@ class UserController extends Controller
             ->pluck('followed_user_id')
             ->toArray();
 
-        $posts = Post::whereIn('user_id', $follows)->get();
+            $posts = Post::whereIn('user_id', $follows)
+            ->join('users', 'posts.user_id', '=', 'users.id')
+            ->select('posts.*', 'users.name as user_name')
+            ->get();
         
         return json_encode($posts);
+    }
+
+    function getPics ($filename) {
+        $path = public_path('images/' . $filename);
+        return response()->file($path);
     }
 }

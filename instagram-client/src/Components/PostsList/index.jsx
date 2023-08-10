@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import "../../styles/postsList.css";
 
 const PostsList = () => {
   const [posts, setPosts] = useState([]);
@@ -33,11 +34,28 @@ const PostsList = () => {
   return (
     <div>
       <h1>Posts from Users You're Following</h1>
-      {posts.map((post) => (
-        <div key={post.id}>
-          <h3>{post.caption}</h3>
-        </div>
-      ))}
+      <div className='postCards flex column'>
+        {posts.map((post) => (
+            <div key={post.id}>
+            <div className="card pointer"
+                // onClick={() => handleNavigate(contact.id)}
+            >
+                <div className="name bold flex center">
+                    {post.user_name}
+                </div>
+                <img src={`http://localhost:8000/${post.photo}`}  alt="Avatar" className="card-pic" />
+                <div className="container flex center">
+                    {post.caption}
+                </div>
+                <div className="like flex center pointer">
+                    <button className="like-btn">
+                        Like
+                    </button>
+                </div>
+            </div>
+            </div>
+        ))}
+      </div>
     </div>
   );
 };

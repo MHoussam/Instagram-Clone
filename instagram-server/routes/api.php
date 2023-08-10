@@ -13,6 +13,8 @@ Route::group(["middleware"=>"auth:api"],function(){
     Route::post('followUsers',[UserController::class,'followUsers']);
     Route::post('post',[UserController::class,'post']);
     Route::post('getPosts',[UserController::class,'getPosts']);
+    Route::get('/images/{filename}', [UserController::class, 'getPics']);
+    
 });
 
 Route::get("unauthorized", [AuthController::class, "unauthorized"])->name("unauthorized");
