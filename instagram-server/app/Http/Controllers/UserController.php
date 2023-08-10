@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Following;
+use App\Models\Post;
 
 class UserController extends Controller
 {
@@ -32,5 +33,26 @@ class UserController extends Controller
 
             return response()->json(['message' => 'Unfollowed.']);
         }
+    }
+
+    function post(Request $request) {
+        $posts = new Post;
+
+        $request->validate([
+            'photo' => 'image|mimes:jpg,png,jpeg|max:5048'
+        ]);
+    
+        if ($request->hasFile('photo')) {
+            $filename = time() . '.' . $request->file('photo')->getClientOriginalExtension();
+            $request->file('photo')->move(public_path('images'), $filename);
+            $posts->photo = 'images/' . $filename;
+        }
+    
+        $posts->user_id = $request->user_id;
+        $posts->caption = $request->caption;
+        $posts->uploaded_at = now();
+        $posts->save();
+    
+        return json_encode($posts);
     }
 }
