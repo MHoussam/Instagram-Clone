@@ -4,6 +4,7 @@ import "../../styles/loginForm.css";
 import "../../styles/utilities.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import logoPic from "../../assets/images/logo.png"
 
 const LoginForm = ({setUser}) =>{
   const [data, setData] = useState({
@@ -39,6 +40,9 @@ const LoginForm = ({setUser}) =>{
     <>
       <div className="addForm flex center">
         <div className="contactForm_container flex column">
+          <div className="logo flex center">
+            <img src={logoPic} className="logoPhoto" />
+          </div>
           <div className="names column flex center">
             <div className="fname flex column width-50">
               <label for="first_name"><span className="bold">Email:</span></label>

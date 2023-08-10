@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import "../../styles/feeds.css";
 
 const Logout = () => {
     const [data] = useState({
@@ -17,7 +18,7 @@ const Logout = () => {
 
   return (
     <div>
-        <button className="logout-btn" onClick={handleLogout}>
+        <button className="logout-btn pointer" onClick={handleLogout}>
             Logout
         </button>
     </div>

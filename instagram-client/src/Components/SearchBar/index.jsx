@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import "../../styles/feeds.css";
 
 const SearchBar = ({ users }) => {
   const [query, setQuery] = useState('');
@@ -81,8 +82,8 @@ const SearchBar = ({ users }) => {
   }, [data]);
 
   return (
-    <div className='search flex center'>
-      <div className="search-bar flex column center">
+    <div className='search width-100 flex center'>
+      <div className="search-bar width-60 flex column center">
         <input type="text" placeholder="Search users" className='search-bar-input' value={query} onChange={handleInputChange} onClick={handleInputClick}/>
         {showList && (
           <ul className='search-list flex column'>

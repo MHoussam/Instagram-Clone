@@ -39,7 +39,7 @@ const Post = () => {
   
     return (
       <div>
-        <button className="post-btn" onClick={handleModalOpen}>
+        <button className="post-btn pointer" onClick={handleModalOpen}>
           Post
         </button>
   
@@ -66,8 +66,8 @@ const Post = () => {
             />
             </div>
             <div>
-            <button onClick={handleModalClose}>Close</button>
-            <button onClick={handlePost}>Post</button>
+            <button onClick={handleModalClose} className='pointer'>Close</button>
+            <button onClick={handlePost} className='pointer'>Post</button>
             </div>
           </div>
         </Modal>

@@ -3,6 +3,7 @@ import axios from "axios";
 import "../../styles/loginForm.css";
 import "../../styles/utilities.css";
 import { useNavigate } from "react-router-dom";
+import logoPic from "../../assets/images/logo.png"
 
 const RegisterForm = ({setUser}) =>{
   const [data, setData] = useState({
@@ -40,6 +41,9 @@ const RegisterForm = ({setUser}) =>{
     <>
       <div className="addForm flex center">
         <div className="contactForm_container flex column">
+        <div className="logo flex center">
+            <img src={logoPic} className="logoPhoto" />
+          </div>
         <div className="names column flex center">
             <div className="fname flex column width-50">
               <label for="first_name"><span className="bold">Name:</span></label>
