@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Following;
 use App\Models\Post;
+//use App\Http\Controllers\DB;
+use Illuminate\Support\Facades\DB;
+
+
 
 class UserController extends Controller
 {
@@ -54,5 +58,15 @@ class UserController extends Controller
         $posts->save();
     
         return json_encode($posts);
+    }
+
+    function getFollowing(Request $request) {
+
+        $follows = DB::table('followings')
+        ->where('following_user_id', '=', $request->following_id)
+        ->select('followed_user_id')
+        ->get();
+        
+        return json_encode($follows);
     }
 }

@@ -31,7 +31,7 @@ const Feeds = () => {
     }
   }
   
-  const [filteredUsers, setFilteredUsers] = useState([]);
+  // const [filteredUsers, setFilteredUsers] = useState([]);
 
   return (
     <div className="flex">
