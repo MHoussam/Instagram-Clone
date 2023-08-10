@@ -26,12 +26,14 @@ const Post = () => {
 
     const handlePost = async () => {
         const formData = new FormData();
+        formData.append('user_id', localStorage.getItem('id'));
         formData.append('photo', image);
         formData.append('caption', caption);
         formData.append('token', localStorage.getItem('token'));
 
-        const response = await axios.post("http://localhost:8000/api/post", data);
-        console.log('Posting:', image, caption);
+        const response = await axios.post("http://localhost:8000/api/post", formData);
+        console.log('Posting:', image, caption, response.data);
+        setCaption('');
         handleModalClose();
       };
   

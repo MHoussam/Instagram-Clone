@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('caption');
+            $table->string('caption')->nullable();
             $table->string('photo');
             $table->string('uploaded_at');
             $table->rememberToken();

@@ -11,6 +11,7 @@ Route::group(["middleware"=>"auth:api"],function(){
 
     Route::post('getUsers',[UserController::class,'getUsers']);
     Route::post('followUsers',[UserController::class,'followUsers']);
+    Route::post('post',[UserController::class,'post']);
 });
 
 Route::get("unauthorized", [AuthController::class, "unauthorized"])->name("unauthorized");
